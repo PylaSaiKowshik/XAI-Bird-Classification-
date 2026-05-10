@@ -1,0 +1,22 @@
+# Python
+venv_XAI/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+frontend/node_modules/
+
+# Angular
+.angular/
+
+# Dataset (BIG)
+backend/train/
+backend/test/
+
+# OS
+.DS_Store
+Thumbs.db
+frontend/dist/
+backend/train_model.py
+backend/eval_model.py

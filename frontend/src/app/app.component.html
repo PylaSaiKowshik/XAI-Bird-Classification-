@@ -1,0 +1,89 @@
+<div class="container">
+
+  <h1>🐦 Bird Classifier with XAI</h1>
+  <p class="subtitle">Upload an image or try samples to classify bird species with explanation</p>
+
+  <!-- Upload -->
+  <div class="upload-box">
+    <input type="file" (change)="onFileSelected($event)" />
+  </div>
+
+  <!-- Sample Images -->
+  <div class="samples">
+    <h3>📸 Try Sample Images</h3>
+    <div class="sample-grid">
+      <img *ngFor="let img of sampleImages"
+           [src]="img"
+           (click)="useSample(img)"
+           class="sample-img">
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="buttons">
+    <button class="btn predict" (click)="predict()">🔍 Predict</button>
+    <button class="btn explain" (click)="explain()">🔥 Explain (XAI)</button>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading">
+    ⏳ Processing... Please wait
+  </div>
+
+  <!-- Result -->
+  <div *ngIf="result" class="result-card">
+    <h2>{{ result.label }}</h2>
+    <p>Confidence: <strong>{{ result.confidence | percent }}</strong></p>
+  </div>
+
+  <!-- Similar Birds -->
+  <div *ngIf="result?.similar" class="similar-box">
+    <h3>🔍 Similar Birds</h3>
+    <ul>
+      <li *ngFor="let s of result.similar">
+        {{ s }}
+      </li>
+    </ul>
+  </div>
+
+  <!-- Heatmap -->
+  <div *ngIf="heatmapUrl" class="heatmap">
+    <h3>🔥 XAI Heatmap</h3>
+    <img [src]="heatmapUrl" alt="Heatmap">
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- <div class="container">
+
+  <h1>🧠 XAI Image Classifier</h1>
+
+  <input type="file" (change)="onFileSelected($event)" />
+
+  <br><br>
+
+  <button (click)="predict()">Predict</button>
+
+  <div *ngIf="loading">Processing...</div>
+
+  <div *ngIf="result" class="result">
+    <h3>{{ result.label }}</h3>
+    <p>Confidence: {{ result.confidence }}</p>
+  </div>
+
+  <h3>Try Sample Images</h3>
+
+  <div class="samples">
+    <img *ngFor="let img of sampleImages"
+         [src]="img"
+         (click)="useSample(img)" />
+  </div>
+
+</div> -->

@@ -1,0 +1,63 @@
+name: Bird Classifier CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout code
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2️⃣ Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      # 3️⃣ Install dependencies from root
+      - name: Install Dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # 4️⃣ Optional: Build Angular frontend
+      - name: Build Angular Frontend
+        run: |
+          cd frontend
+          npm install
+          npm run build -- --output-path ../backend/static
+
+      # 5️⃣ Test Backend Import
+      - name: Test Backend Import
+        run: |
+          cd backend
+          python -c "import main"
+
+      # 6️⃣ Lint Backend (ignore minor style issues)
+      - name: Lint Backend
+        run: |
+          pip install flake8
+          cd backend
+          flake8 main.py --max-line-length=120 --ignore=E302,E303,E305,E501,F401
+
+      # 7️⃣ Test FastAPI Health Endpoint
+      - name: Test FastAPI Startup
+        run: |
+          cd backend
+          pip install uvicorn
+          uvicorn main:app --host 127.0.0.1 --port 8000 --lifespan off &
+          sleep 5
+          curl -s http://127.0.0.1:8000/health
+
+      # 8️⃣ Deploy to Render (only if all previous steps pass)
+      - name: Deploy to Render
+        if: github.ref == 'refs/heads/main'
+        run: |
+          curl -X POST ${{ secrets.CI_CD_bird_classifier }}

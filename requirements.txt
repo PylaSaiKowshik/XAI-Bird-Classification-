@@ -1,0 +1,54 @@
+fastapi==0.110.0
+uvicorn==0.27.1
+numpy==1.24.3
+pillow==10.2.0
+python-multipart==0.0.9
+
+# 🔥 Lightweight ML
+tflite-runtime==2.14.0
+
+
+# 🔥 XAI (keep minimal)
+lime==0.2.0.1
+scikit-image==0.22.0
+
+
+
+
+# fastapi==0.110.0
+# uvicorn==0.27.1
+# tensorflow==2.10.0
+# numpy==1.24.3
+# pillow==10.2.0
+# python-multipart==0.0.9
+
+
+# local{train+eval}
+# fastapi==0.110.0
+# uvicorn==0.27.1
+
+# tensorflow==2.10.0
+# numpy==1.23.5
+# pillow==10.2.0
+
+# scikit-learn==1.3.2
+# matplotlib==3.7.3
+# seaborn==0.12.2
+
+# python-multipart
+
+
+
+
+# fastapi==0.110.0
+# uvicorn==0.27.1
+# tensorflow==2.15.0
+# numpy = 1.26.4 
+# pillow==10.2.0
+# scipy==1.10.1
+
+# scikit-learn==1.3.2
+# matplotlib==3.7.3
+# seaborn==0.12.2
+#  fastapi==0.110.0 
+#  uvicorn==0.27.1
