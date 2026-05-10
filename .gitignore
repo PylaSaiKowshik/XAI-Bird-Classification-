@@ -14,9 +14,19 @@ frontend/node_modules/
 backend/train/
 backend/test/
 
+# Model files
+backend/efficientnet_model.keras
+backend/efficientnet_model.tflite
+backend/mobilenetv3_model.keras
+backend/mobilenetv3_model.tflite
+
+# Other backend files
+backend/train_model.py
+backend/eval_model.py
+
+# Build output
+frontend/dist/
+
 # OS
 .DS_Store
 Thumbs.db
-frontend/dist/
-backend/train_model.py
-backend/eval_model.py
